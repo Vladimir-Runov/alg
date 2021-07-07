@@ -1,7 +1,5 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+import java.io.SyncFailedException;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +13,8 @@ public class Main {
 
         1. Создать программу, которая переворачивает вводимые строки (читает справа налево).
         2. Создать класс для реализации дека.
+        Дек (deque) представляет собой двустороннюю очередь. И вставка, и удаление элементов могут производиться с обоих концов. Соответствующие методы могут называться insertLeft()/insertRight() и removeLeft()/removeRight().
+
         3. Реализовать расширение массива в стеке при заполнении стека.
         4 ***. Реализовать расширение массива в очереди при заполнении очереди.
 
@@ -23,9 +23,29 @@ public class Main {
 
     public static void main(String[] args) {
     // TODO
+        Scanner in = new Scanner(System.in);
+        while ( true ) {
+            System.out.print("Enter some str: ");
+            String str = in.nextLine();
+            if ("".equals(str))
+                break;
+            Deque<Character> d = new Deque<Character>();
+            char[] buf = str.toCharArray();
+            for (int i = 0; i < buf.length; i++) {
+                d.insertRight(buf[i]);
+            }
+            do {
+                try {
 
+                    Character g = d.removeRight();
+                    System.out.print(g);
+                } catch (NoSuchElementException e) {
+                    System.out.println("");
+                    break;
+                }
+            } while (true);
 
-
+        }
     }
 
 
