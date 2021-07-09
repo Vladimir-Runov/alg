@@ -34,6 +34,7 @@ public class Main {
             for (int i = 0; i < buf.length; i++) {
                 d.insertRight(buf[i]);
             }
+
             do {
                 try {
 
