@@ -12,6 +12,16 @@ public class Main {
     public static Random rand = new Random(10);
 
     public static void main(String[] args) {
+        Stack<Integer> st = new Stack<Integer>();
+        st.push(4);
+        st.push(12);
+        st.push(23);
+        System.out.println(st.pop());
+        System.out.println(st.pop());
+
+        MyLinkedList<Integer>.Iter itr = st.getList().getIter();
+        itr.insertAfter( 20);
+        itr.insertBefore(10);
 
     }
 
