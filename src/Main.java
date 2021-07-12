@@ -21,47 +21,46 @@ public class Main {
 // 2
         Random random = new Random();
         float[] weights = new float[MAX_NUMBER];
-        float[] scopes = new float[MAX_NUMBER];
+        float[] scopes  = new float[MAX_NUMBER];
         Set<Integer> availableNumbers = new HashSet<>(0);
         for (int i = 0; i < MAX_NUMBER; i++) {
             availableNumbers.add(i);
-            weights[i] = random.nextInt(60)/1f + random.nextInt(20)/10f;
+            weights[i] = random.nextInt(70)/1f + random.nextInt(30)/10f;
             scopes[i] = random.nextInt(100)/100f;
         }
-        System.out.println(Arrays.toString(weights)); //выводим массив весов
-        System.out.println(Arrays.toString(scopes)); //выводим массив цен
+        System.out.println("weights: " + Arrays.toString(weights)); //выводим массив весов
+        System.out.println("scope    " + Arrays.toString(scopes)); //выводим массив цен
 
         ArrayList<Float> results = new ArrayList<>();
 
         List<Integer[]> variants = generateIndexes_int_recursive(availableNumbers);
         for (Integer[] permutation : variants) {
-            System.out.print(Arrays.toString(permutation) );
-            float scope = 0, weight = 0; String log = "  ";
+            System.out.print(Arrays.toString(permutation));
+            float scope = 0, weight = 0;
+            String log = "  W=";
             System.out.print(log);
             for (Integer x : permutation) {
-                if (weight+weights[x] < MAX_WEIGHT) {
+                if (weight + weights[x] < MAX_WEIGHT) {
                     weight += weights[x];
                     scope += scopes[x];
-                    log = log + "+" + x.toString();
+                    log = log + "+" + weights[x];
                 } else {
-                        log = log + "]";
-                        break;
+                    log = log + "]";
+                    break;
                 }
             }
             results.add(scope);
-
             System.out.print(log);
-            System.out.print(".  -> w="+weight);
-            System.out.println(" sc=" + scope);
-
+            System.out.println(" = " + weight + ", sc= " + scope);
+        }
             float fMaxRez = 0;
             for (Float f : results) {
                 if (f > fMaxRez)
                     fMaxRez = f;
             }
-            System.out.println(" * * * max scope " + fMaxRez);
+            System.out.println(" * * * max scope (max W=" + MAX_WEIGHT + ") " + fMaxRez);
 
-        }
+
     }
 
 
