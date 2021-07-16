@@ -34,6 +34,11 @@ public class Node {
         private boolean isBalanced;
         private int height;
 
+        @Override
+        public String toString() {
+            return "Balanced " + isBalanced + " h=" + height;
+        }
+
         private BalancedResult(boolean isBalanced, int height) {
             this.isBalanced = isBalanced;
             this.height = height;
@@ -51,6 +56,33 @@ public class Node {
         int height = Math.max(leftSubtreeResult.height, rightSubtreeResult.height) + 1;
 
         return new BalancedResult(isBalanced && subtreesAreBalanced, height);
+    }
+
+    public static int countChildren(Node node)
+    {
+        if ( node == null )
+            return 0;
+        return 1 + countChildren(node.left) + countChildren(node.right);
+    }
+    public static int getHeight(Node root)
+    {
+        if(root!=null)
+            return 1+ Math.max(getHeight(root.left),getHeight(root.right));
+        return 0;
+    }
+
+    public static int MaxDepth(Node node) {
+        if (node == null)
+            return 0;
+        // compute the depth of each subtree
+        int leftDepth = MaxDepth(node.left);
+        int rightDepth = MaxDepth(node.right);
+        // use the larger one
+        if (leftDepth > rightDepth )
+            return (leftDepth + 1);
+        else
+            return (rightDepth + 1);
+
     }
 
     public static Node find(Node root, int key){
