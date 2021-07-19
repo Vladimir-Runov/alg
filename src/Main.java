@@ -1,7 +1,7 @@
 
 public class Main {
     public static void main(String[] args) {
-        Less_6.go();
-    }
+        Less_7_Graf.go();
 
+    }
 }

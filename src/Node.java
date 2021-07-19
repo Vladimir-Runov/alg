@@ -44,6 +44,7 @@ public class Node {
             this.height = height;
         }
     }
+
     public static BalancedResult isBalancedRecursive(Node root, int depth) {
         if (root == null) {
             return new BalancedResult(true,-1);
